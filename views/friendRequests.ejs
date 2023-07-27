@@ -1,0 +1,17 @@
+<!-- friendRequests.ejs -->
+
+<h1>Friend Requests</h1>
+
+<ul>
+  <% friendRequests.forEach((request) => { %>
+    <li>
+      <span><%= request.firstName %> <%= request.lastName %></span>
+      <form action="/users/<%= currentUser._id %>/friend-requests/<%= request._id %>/accept" method="POST">
+        <button type="submit">Accept</button>
+      </form>
+      <form action="/users/<%= currentUser._id %>/friend-requests/<%= request._id %>/reject" method="POST">
+        <button type="submit">Reject</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>

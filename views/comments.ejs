@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Comments</title>
+</head>
+<body>
+  <h1>Comments</h1>
+
+  <% if (post.comments.length === 0) { %>
+    <p>No comments yet.</p>
+  <% } else { %>
+    <ul>
+      <% posts.forEach(post => { %>
+        <li>
+          <p>Comment: <%= post.comments %></p>
+          <p>User: <%= post.author %></p>
+        </li>
+      <% }); %>
+    </ul>
+  <% } %>
+
+  <a href="/home">Go Back</a>
+</body>
+</html>

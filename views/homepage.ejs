@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scream</title>
+  <link rel="stylesheet" href="/homeStyles.css">
+</head>
+<body>
+  <h1>Scream</h1>
+
+  <!-- Create a New Post form -->
+  <h2>Create a New Post</h2>
+  <form method="POST" action="/posts">
+    <label for="content"></label>
+    <input type="text" id="content" name="content" placeholder="What's on your mind" required></input>
+    <button type="submit">Scream It Out</button>
+  </form>
+
+<!-- Recent Posts -->
+<h2>Recent Posts</h2>
+<% if (posts.length === 0) { %>
+  <p>No posts yet.</p>
+<% } else { %>
+  <ul>
+    <% posts.forEach(post => { %>
+      <li>
+        <p>Content: <%= post.content %></p>
+        <p>Author: <%= post.author %></p>
+        
+        <a href="/posts/<%= post._id %>/comments">Comments</a>
+        <p>Likes: <%= post.likes %></p>
+        <form method="POST" action="/posts/<%= post._id %>/like">
+          <button type="submit">Like</button>
+        </form>
+        <form method="POST" action="/posts/<%= post._id %>/comments">
+          <label for="comment">Add Comment:</label>
+          <input type="text" id="comment" name="comment" required></input>
+          <button type="submit">Comment</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+<% } %>
+
+<h2>Friend Requests</h2>
+<a href="/users/<%= currentUser._id %>/friend-requests">View Friend Requests</a>
+
+
+  <!-- Logout link -->
+  <a href="/logout">Logout</a>
+</body>
+</html>
